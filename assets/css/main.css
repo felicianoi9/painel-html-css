@@ -16,9 +16,7 @@
 #sidebar-toggle{
     display: none;
 }
-#sidebar-toggle:checked .sidebar{
-    
-}
+
 .sidebar{
     height: 100%;
     width: 240px;
@@ -29,6 +27,7 @@
     background: var(--main-color);
     color: #fff;
     overflow-y: auto;
+    transition: width 500ms;
 }
 .sidebar-header{
     display: flex;
@@ -51,9 +50,31 @@
 .sidebar a span:last-child {
     padding-left: .6rem;
 }
+#sidebar-toggle:checked ~ .sidebar{
+    width: 60px;
+}
+#sidebar-toggle:checked ~ .sidebar .sidebar-header h3 span,
+#sidebar-toggle:checked ~ .sidebar li span:last-child{
+    display: none;
+}
+
+#sidebar-toggle:checked ~ .sidebar .sidebar-header,
+#sidebar-toggle:checked ~ .sidebar li {
+   display: flex;
+   justify-content: center;
+}
+
+#sidebar-toggle:checked ~ .main-content{
+    margin-left: 60px;
+}
+
+#sidebar-toggle:checked ~ .main-content header{
+    left: 60px;
+}
 .main-content{
     position: relative;
     margin-left: 240px;
+    transition: margin-left 500ms;
 }
 header{
     position: fixed;
@@ -68,6 +89,7 @@ header{
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid #ccc;
+    transition: left 500ms;
 }
 .search-wrapper{
     display: flex;
@@ -271,4 +293,27 @@ tbodu tr:nth-child(even){
     border: 1px solid var(--main-color);
     border-radius: 4px;
     padding: .4rem 1rem;
+}
+@media only screen and (max-width: 1200) {
+    .sidebar{
+        width: 60px;
+    }
+   .sidebar .sidebar-header h3 span,
+   .sidebar li span:last-child{
+        display: none;
+    }
+    
+   .sidebar .sidebar-header,
+   .sidebar li {
+       display: flex;
+       justify-content: center;
+    }
+    
+    .main-content{
+        margin-left: 60px;
+    }
+    
+    .main-content header{
+        left: 60px;
+    }
 }
